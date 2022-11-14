@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+	 	http://www.springframework.org/schema/context
+       	http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	>
+
+	<!-- Made this colour as a base/default kind of bean -->
+	<bean id="colour" class="rs.ac.singidunum.spring.Colour">
+        <property name="colourHue" value="white"/>
+        <property name="texture" value="metalic"/>
+    </bean>
+    
+    
+    <!-- Shows how @Qualifier annotation works, in Car class -->
+    <bean id="differentColours1" class="rs.ac.singidunum.spring.Colour">
+        <property name="colourHue" value="brown" />
+        <property name="texture" value="metalic" />
+    </bean>
+    
+    <!-- Shows how @Qualifier annotation works, in Bike class -->
+    <bean id="differentColours2" class="rs.ac.singidunum.spring.Colour">
+        <property name="colourHue" value="yellow" />
+        <property name="texture" value="metalic" />
+    </bean>
+    
+    <!-- Shows how @Qualifier annotation works, in Truck class -->
+    <bean id="differentColours3" class="rs.ac.singidunum.spring.Colour">
+        <property name="colourHue" value="red" />
+        <property name="texture" value="mate" />
+    </bean>
+    
+    <!--
+    Auto-Wiring 'no'  This is the default mode.
+    -->
+    <context:annotation-config />
+    <bean id="car" class="rs.ac.singidunum.spring.Car">
+        <property name="model" value="Range Rover Evoque"/>
+        
+       <!-- <property name="colour" ref="colour"/> 
+       With this, the car will take the default values we set.
+       --> 
+    </bean>
+    
+    <!--
+    Auto-Wiring ‘byName’
+    We are using the Bike.java class to wire the colour bean in the auto-wiring byName mode.
+    -->
+    
+    <context:annotation-config />
+    <bean id="bike" class="rs.ac.singidunum.spring.Bike" autowire="byName">
+        <property name="model" value="Kawasaki Ninja ZX" />
+    </bean>
+    
+    <!--
+    Auto-Wiring `constructor'
+    Doing it this way is pretty much the same as standard constructor-arg element in the beans definition.
+    -->
+     <context:annotation-config />
+    <bean id="boat" class="rs.ac.singidunum.spring.Boat" autowire="constructor">
+    <property name="model" value="Outerlimits SV-52"></property>
+    
+    </bean>
+    
+	<context:annotation-config />
+    <bean id="truck" class="rs.ac.singidunum.spring.Truck" >
+        <property name="model" value="Mercedes-Benz Axor" />
+    </bean>
+    
+
+   
+
+
+</beans>

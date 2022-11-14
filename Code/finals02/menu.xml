@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="foodMenu" class="finals02.Menu">
+		<constructor-arg name="name" type="String" value="Menu">
+		</constructor-arg>
+		<constructor-arg name="meals">
+			<set>
+				<value>pizza</value>
+				<value>pasta</value>
+				<value>steak</value>
+				<value>salad</value>
+				<value>cake</value>
+				<value>fish</value>
+			</set>
+		</constructor-arg>
+	</bean>
+	<bean id="sr" class="finals02.Customer"> 
+		<property name="customerName" value="Sara"></property>
+		<property name="age" value="21"></property>
+		<property name="customerId" value="101"></property>
+	</bean>
+	<bean id="st" class="finals02.Customer"> 
+		<property name="customerName" value="Stefan"></property>
+		<property name="age" value="21"></property>
+		<property name="customerId" value="201"></property>
+	</bean>
+	<bean id="hn" class="finals02.Customer"> 
+		<property name="customerName" value="Hannah"></property>
+		<property name="age" value="24"></property>
+		<property name="customerId" value="301"></property>
+	</bean>
+	<bean id="ol" class="finals02.Customer"> 
+		<property name="customerName" value="Oliver"></property>
+		<property name="age" value="27"></property>
+		<property name="customerId" value="401"></property>
+	</bean>
+	<bean id="restaurant" class="finals02.Restaurant">
+		<property name="oldest" ref="ol"></property>
+		<property name="customers">
+			<list>
+				<ref bean="sr" />
+				<ref bean="st" />
+				<ref bean="hn" />
+				<ref bean="ol" />
+			</list>
+		</property>
+	</bean>
+	<bean id="reservation" class="finals02.Reservation">
+		<property name="meals">
+			<props>
+				<prop key="sr">pizza</prop>
+				<prop key="st">steak</prop>
+				<prop key="hn">pasta</prop>
+				<prop key="ol">cake</prop>
+			</props>
+		</property>
+		<property name="customers">
+			<map> 
+				<entry key="sr" value-ref="sr"></entry>
+				<entry key="st" value-ref="st"></entry>
+				<entry key="hn" value-ref="hn"></entry>
+				<entry key="ol" value-ref="ol"></entry>
+			</map>
+		</property>
+	</bean>
+</beans>

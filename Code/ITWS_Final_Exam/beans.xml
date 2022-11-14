@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="user1" class="rs.ac.singidunum.spring.User"
+		scope="prototype" init-method="onCreate" destroy-method="onDestroy">
+		<constructor-arg name="username" type="String"
+			value="StefanCliff">
+		</constructor-arg>
+		<constructor-arg name="message" type="String"
+			value="Hello world!">
+		</constructor-arg>
+		<property name="ipAddressMask" value="255.255.255.0"></property>
+		<property name="PC" ref="pc1"></property>
+	</bean>
+
+	<bean id="user2" class="rs.ac.singidunum.spring.User"
+		scope="prototype" init-method="onCreate" destroy-method="onDestroy">
+		<constructor-arg name="username" type="String"
+			value="SaraPaunovic">
+		</constructor-arg>
+		<constructor-arg value="Hello world!" type="String"
+			name="message">
+		</constructor-arg>
+		<property name="ipAddressMask" value="255.255.255.1"></property>
+		<property name="PC" ref="pc2"></property>
+	</bean>
+
+	<bean id="pc1" class="rs.ac.singidunum.spring.PC"
+		scope="prototype">
+		<constructor-arg name="ipAddress" type="String"
+			value="192.0.2.1">
+		</constructor-arg>
+	</bean>
+	
+	
+	<bean id="pc2" class="rs.ac.singidunum.spring.PC"
+		scope="prototype">
+		<constructor-arg name="ipAddress" type="String"
+			value="192.0.2.2">
+		</constructor-arg>
+	</bean>
+	
+</beans>
