@@ -1,4 +1,4 @@
-# Spring Project
+# Spring Projects
 
 
 This is a collection of smaller spring bean projects that was done in a duo between me and a fellow student. 
